@@ -19,4 +19,5 @@ public interface StudentDao {
 	void remove(Student student) throws ClassNotFoundException, SQLException, IOException;
 
 	void removeByDni(String dni) throws ClassNotFoundException, SQLException, IOException;
+
 }

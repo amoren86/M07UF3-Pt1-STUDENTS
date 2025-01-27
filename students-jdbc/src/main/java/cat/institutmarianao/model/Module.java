@@ -15,9 +15,6 @@ public class Module {
 	@NotBlank
 	private String name;
 
-	public Module() {
-	}
-
 	public String getCode() {
 		return code;
 	}

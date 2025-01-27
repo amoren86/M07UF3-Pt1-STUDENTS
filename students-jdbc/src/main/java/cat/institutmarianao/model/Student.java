@@ -33,9 +33,6 @@ public class Student {
 	@NotEmpty
 	private List<Module> modules;
 
-	public Student() {
-	}
-
 	public String getDni() {
 		return dni;
 	}
@@ -97,10 +94,9 @@ public class Student {
 		if (this == obj) {
 			return true;
 		}
-		if (!(obj instanceof Student)) {
+		if (!(obj instanceof Student other)) {
 			return false;
 		}
-		Student other = (Student) obj;
 		return Objects.equals(dni, other.dni);
 	}
 }

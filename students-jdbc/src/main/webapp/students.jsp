@@ -18,17 +18,7 @@
 		document.getElementById("dniHref").href = dniHref;
 	}
 </script>
-<style type="text/css"><%--
-.modal-header, h4, .close {
-	background-color: #a94442;
-	color: white !important;
-	text-align: center;
-	font-size: 30px;
-}
-
-.modal-footer {
-	background-color: #f9f9f9;
-}--%>
+<style type="text/css">
 </style>
 </head>
 <body>

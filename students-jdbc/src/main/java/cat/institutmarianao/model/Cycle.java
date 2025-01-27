@@ -12,9 +12,6 @@ public class Cycle {
 	@NotBlank
 	private String name;
 
-	public Cycle() {
-	}
-
 	public String getCode() {
 		return code;
 	}

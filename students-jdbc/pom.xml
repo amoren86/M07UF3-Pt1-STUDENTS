@@ -3,6 +3,7 @@
 	xsi:schemaLocation="https://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
 
 	<modelVersion>4.0.0</modelVersion>
+
 	<groupId>cat.institutmarianao</groupId>
 	<artifactId>students-jdbc</artifactId>
 	<version>2025.01</version>
@@ -18,9 +19,18 @@
 		<jakarta.servlet.jsp.jstl.version>3.0.0</jakarta.servlet.jsp.jstl.version>
 		<mysql.connector.version>8.0.33</mysql.connector.version>
 
-		<!-- Plugin versions -->
-		<compiler.plugin.version>3.11.0</compiler.plugin.version>
+		<!-- Tests-->
+		<h2-database>2.3.232</h2-database>
+		<junit.version>4.13.2</junit.version>
+
+		<arquillian-junit-container>1.7.2.Final</arquillian-junit-container>
+		<payara-embedded-all>6.2025.1</payara-embedded-all>
+		<arquillian-payara-server-embedded>3.1</arquillian-payara-server-embedded>
+
+		<!-- Build -->
 		<war.plugin.version>3.3.2</war.plugin.version>
+		<compiler.plugin.version>3.11.0</compiler.plugin.version>
+		<maven-surefire.version>3.0.0-M5</maven-surefire.version>
 	</properties>
 
 	<dependencies>
@@ -31,11 +41,10 @@
 			<version>${jakartaee-api.version}</version>
 			<scope>provided</scope>
 		</dependency>
-
-		<!-- JSTL -->
+		<!-- Jakarta JSTL -->
 		<dependency>
-			<groupId>org.glassfish.web</groupId>
-			<artifactId>jakarta.servlet.jsp.jstl</artifactId>
+			<groupId>jakarta.servlet.jsp.jstl</groupId>
+			<artifactId>jakarta.servlet.jsp.jstl-api</artifactId>
 			<version>${jakarta.servlet.jsp.jstl.version}</version>
 		</dependency>
 		<!-- MySQL Driver -->
@@ -43,6 +52,43 @@
 			<groupId>com.mysql</groupId>
 			<artifactId>mysql-connector-j</artifactId>
 			<version>${mysql.connector.version}</version>
+		</dependency>
+
+		<!-- JUnit -->
+		<dependency>
+			<groupId>junit</groupId>
+			<artifactId>junit</artifactId>
+			<version>${junit.version}</version>
+			<scope>test</scope>
+		</dependency>
+
+		<!-- H2 -->
+		<dependency>
+			<groupId>com.h2database</groupId>
+			<artifactId>h2</artifactId>
+			<version>${h2-database}</version>
+			<scope>test</scope>
+		</dependency>
+
+		<!-- Dependencia de Arquillian Core -->
+		<dependency>
+			<groupId>org.jboss.arquillian.junit</groupId>
+			<artifactId>arquillian-junit-container</artifactId>
+			<version>${arquillian-junit-container}</version>
+			<scope>test</scope>
+		</dependency>
+
+		<!-- Payara Embedded -->
+		<dependency>
+			<groupId>fish.payara.extras</groupId>
+			<artifactId>payara-embedded-all</artifactId>
+			<version>${payara-embedded-all}</version>
+			<scope>test</scope>
+		</dependency>
+		<dependency>
+			<groupId>fish.payara.arquillian</groupId>
+			<artifactId>arquillian-payara-server-embedded</artifactId>
+			<version>${arquillian-payara-server-embedded}</version>
 		</dependency>
 	</dependencies>
 
@@ -61,7 +107,17 @@
 					<artifactId>maven-compiler-plugin</artifactId>
 					<version>${compiler.plugin.version}</version>
 				</plugin>
+				<!-- Surfire for tests -->
+				<plugin>
+					<groupId>org.apache.maven.plugins</groupId>
+					<artifactId>maven-surefire-plugin</artifactId>
+					<version>${maven-surefire.version}</version>
+					<configuration>
+						<argLine>--add-opens=java.base/java.io=ALL-UNNAMED --add-opens=java.base/java.lang=ALL-UNNAMED --add-opens=java.base/java.lang.invoke=ALL-UNNAMED --add-opens=java.base/java.nio=ALL-UNNAMED --add-opens=java.base/jdk.internal.loader=ALL-UNNAMED --add-opens=java.base/sun.nio.ch=ALL-UNNAMED --add-opens=java.management/sun.management=ALL-UNNAMED --add-opens=java.base/sun.net.www.protocol.jrt=ALL-UNNAMED --add-opens=java.base/java.net=ALL-UNNAMED --add-opens=java.desktop/java.beans=ALL-UNNAMED --add-opens=java.base/sun.net.www.protocol.jar=ALL-UNNAMED --add-exports=java.base/jdk.internal.ref=ALL-UNNAMED --add-exports=java.base/sun.net.www=ALL-UNNAMED --add-exports=java.base/sun.security.util=ALL-UNNAMED --add-opens=java.naming/javax.naming.spi=ALL-UNNAMED --add-exports=java.naming/javax.naming.spi=ALL-UNNAMED --add-opens=java.base/sun.net.www.protocol.jar=ALL-UNNAMED</argLine>
+					</configuration>
+				</plugin>
 			</plugins>
 		</pluginManagement>
 	</build>
+
 </project>
