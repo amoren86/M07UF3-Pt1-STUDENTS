@@ -1,0 +1,67 @@
+<project xmlns="https://maven.apache.org/POM/4.0.0"
+	xmlns:xsi="https://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="https://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+
+	<modelVersion>4.0.0</modelVersion>
+	<groupId>cat.institutmarianao</groupId>
+	<artifactId>students-jdbc</artifactId>
+	<version>2025.01</version>
+	<packaging>war</packaging>
+
+	<properties>
+		<!-- General properties -->
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+		<maven.compiler.release>17</maven.compiler.release>
+
+		<!-- Dependency versions -->
+		<jakartaee-api.version>10.0.0</jakartaee-api.version>
+		<jakarta.servlet.jsp.jstl.version>3.0.0</jakarta.servlet.jsp.jstl.version>
+		<mysql.connector.version>8.0.33</mysql.connector.version>
+
+		<!-- Plugin versions -->
+		<compiler.plugin.version>3.11.0</compiler.plugin.version>
+		<war.plugin.version>3.3.2</war.plugin.version>
+	</properties>
+
+	<dependencies>
+		<!-- Jakarta EE API -->
+		<dependency>
+			<groupId>jakarta.platform</groupId>
+			<artifactId>jakarta.jakartaee-web-api</artifactId>
+			<version>${jakartaee-api.version}</version>
+			<scope>provided</scope>
+		</dependency>
+
+		<!-- JSTL -->
+		<dependency>
+			<groupId>org.glassfish.web</groupId>
+			<artifactId>jakarta.servlet.jsp.jstl</artifactId>
+			<version>${jakarta.servlet.jsp.jstl.version}</version>
+		</dependency>
+		<!-- MySQL Driver -->
+		<dependency>
+			<groupId>com.mysql</groupId>
+			<artifactId>mysql-connector-j</artifactId>
+			<version>${mysql.connector.version}</version>
+		</dependency>
+	</dependencies>
+
+	<build>
+		<pluginManagement>
+			<plugins>
+				<!-- Maven WAR Plugin -->
+				<plugin>
+					<groupId>org.apache.maven.plugins</groupId>
+					<artifactId>maven-war-plugin</artifactId>
+					<version>${war.plugin.version}</version>
+				</plugin>
+				<!-- Maven Compiler Plugin -->
+				<plugin>
+					<groupId>org.apache.maven.plugins</groupId>
+					<artifactId>maven-compiler-plugin</artifactId>
+					<version>${compiler.plugin.version}</version>
+				</plugin>
+			</plugins>
+		</pluginManagement>
+	</build>
+</project>
