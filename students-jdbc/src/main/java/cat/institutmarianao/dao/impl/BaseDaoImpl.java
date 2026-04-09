@@ -16,14 +16,15 @@ public abstract class BaseDaoImpl<T, V> {
 	protected DbConnection dBConnection;
 	protected Connection connection;
 
-	public BaseDaoImpl() {
+	protected void checkConnection() throws ClassNotFoundException, SQLException, IOException {
+		if (connection == null || connection.isClosed()) {
+			connection = dBConnection.getConnection();
+		}
 	}
 
 	protected PreparedStatement getPreparedStatement(String query)
 			throws ClassNotFoundException, SQLException, IOException {
-		if (connection == null) {
-			connection = dBConnection.getConnection();
-		}
+		checkConnection();
 		return connection.prepareStatement(query);
 	}
 
@@ -52,11 +53,7 @@ public abstract class BaseDaoImpl<T, V> {
 		return results.get(0);
 	}
 
-	protected int executeUpdateQuery(PreparedStatement preparedStatement)
-			throws ClassNotFoundException, SQLException, IOException {
-		if (connection == null) {
-			connection = dBConnection.getConnection();
-		}
+	protected int executeUpdateQuery(PreparedStatement preparedStatement) throws SQLException {
 		return preparedStatement.executeUpdate();
 	}
 }

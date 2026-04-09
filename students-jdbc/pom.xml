@@ -6,7 +6,7 @@
 
 	<groupId>cat.institutmarianao</groupId>
 	<artifactId>students-jdbc</artifactId>
-	<version>2025.01</version>
+	<version>2025.26</version>
 	<packaging>war</packaging>
 
 	<properties>
@@ -17,7 +17,7 @@
 		<!-- Dependency versions -->
 		<jakartaee-api.version>10.0.0</jakartaee-api.version>
 		<jakarta.servlet.jsp.jstl.version>3.0.0</jakarta.servlet.jsp.jstl.version>
-		<mysql.connector.version>8.0.33</mysql.connector.version>
+		<mysql.connector.version>8.3.0</mysql.connector.version>
 
 		<!-- Tests-->
 		<h2-database>2.3.232</h2-database>
@@ -28,8 +28,8 @@
 		<arquillian-payara-server-embedded>3.1</arquillian-payara-server-embedded>
 
 		<!-- Build -->
-		<war.plugin.version>3.3.2</war.plugin.version>
 		<compiler.plugin.version>3.11.0</compiler.plugin.version>
+		<war.plugin.version>3.3.2</war.plugin.version>
 		<maven-surefire.version>3.0.0-M5</maven-surefire.version>
 	</properties>
 
@@ -70,7 +70,7 @@
 			<scope>test</scope>
 		</dependency>
 
-		<!-- Dependencia de Arquillian Core -->
+		<!-- Arquillian Core -->
 		<dependency>
 			<groupId>org.jboss.arquillian.junit</groupId>
 			<artifactId>arquillian-junit-container</artifactId>
@@ -89,6 +89,7 @@
 			<groupId>fish.payara.arquillian</groupId>
 			<artifactId>arquillian-payara-server-embedded</artifactId>
 			<version>${arquillian-payara-server-embedded}</version>
+			<scope>test</scope>
 		</dependency>
 	</dependencies>
 
