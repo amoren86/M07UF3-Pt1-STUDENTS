@@ -10,7 +10,7 @@ import java.util.List;
 import org.jboss.arquillian.container.test.api.Deployment;
 import org.jboss.arquillian.junit.Arquillian;
 import org.jboss.shrinkwrap.api.ShrinkWrap;
-import org.jboss.shrinkwrap.api.spec.JavaArchive;
+import org.jboss.shrinkwrap.api.spec.WebArchive;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 
@@ -25,11 +25,14 @@ public class CycleDaoImplTest {
 	private CycleDao cycleDao;
 
 	@Deployment
-	public static JavaArchive createDeployment() {
-		return ShrinkWrap.create(JavaArchive.class, "students-jdbc.jar").addPackages(true, "cat.institutmarianao.dao")
-				.addPackage("cat.institutmarianao.model").addClass(org.h2.Driver.class).addAsResource("db.properties")
-				.addAsManifestResource("META-INF/MANIFEST.MF", "MANIFEST.MF")
-				.addAsManifestResource("META-INF/ejb-jar.xml", "ejb-jar.xml");
+	public static WebArchive createDeployment() {
+		WebArchive war = ShrinkWrap.create(WebArchive.class, "students-jdbc.war")
+				.addPackages(true, "cat.institutmarianao.dao").addPackage("cat.institutmarianao.model")
+				.addClass(org.h2.Driver.class).addAsResource("db.properties").addAsResource("db_test.sql")
+				.addAsManifestResource("META-INF/MANIFEST.MF", "MANIFEST.MF").setWebXML("WEB-INF/web.xml");
+		// war.as(ZipExporter.class).exportTo(new File("target/students-jdbc.war"),
+		// true);
+		return war;
 	}
 
 	@Test
