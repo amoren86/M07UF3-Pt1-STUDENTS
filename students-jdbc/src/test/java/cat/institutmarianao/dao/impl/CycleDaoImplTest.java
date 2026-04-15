@@ -27,8 +27,8 @@ public class CycleDaoImplTest {
 	@Deployment
 	public static JavaArchive createDeployment() {
 		return ShrinkWrap.create(JavaArchive.class, "students-jdbc.jar").addPackages(true, "cat.institutmarianao.dao")
-				.addPackage("cat.institutmarianao.model").addClass(org.h2.Driver.class)
-				.addAsManifestResource("db.properties").addAsManifestResource("META-INF/MANIFEST.MF", "MANIFEST.MF")
+				.addPackage("cat.institutmarianao.model").addClass(org.h2.Driver.class).addAsResource("db.properties")
+				.addAsManifestResource("META-INF/MANIFEST.MF", "MANIFEST.MF")
 				.addAsManifestResource("META-INF/ejb-jar.xml", "ejb-jar.xml");
 	}
 
