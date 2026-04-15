@@ -14,7 +14,7 @@ import jakarta.ejb.Stateless;
 @Stateless
 public class DbConnection {
 	@Resource(name = "dbProperties")
-	private String dbProperties = "db.properties"; // FIXME delete assignment and use @Resource
+	private String dbProperties;
 
 	public Connection getConnection() throws ClassNotFoundException, IOException, SQLException {
 		Properties props = new Properties();
